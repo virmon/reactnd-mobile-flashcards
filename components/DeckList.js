@@ -17,7 +17,7 @@ const data = [
 
 class DeckList extends Component {
     renderItems = ({ item }) => {
-        return <DeckItem key={item.key} {...item} />
+        return <DeckItem key={item.key} {...item} navigation={this.props.navigation}/>
     }
     render () {
         return (

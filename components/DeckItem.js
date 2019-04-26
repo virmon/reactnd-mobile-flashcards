@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { blue, gray } from '../utils/colors'
 
 class DeckItem extends Component {
@@ -7,11 +7,12 @@ class DeckItem extends Component {
         console.log('pressed')
     }
     render () {
+        const { navigation, key, title, cards } = this.props
         return (
-            <View style={styles.container} onPress={() => console.log('pressed')}>
-                <Text style={{fontSize: 25}}>{this.props.title}</Text>
-                <Text style={styles.number}>{this.props.cards} cards</Text>
-            </View>
+            <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('DeckDetail', {title: title})}>
+                <Text style={{fontSize: 25}}>{title}</Text>
+                <Text style={styles.number}>{cards} cards</Text>
+            </TouchableOpacity>
         )
     }
 }
