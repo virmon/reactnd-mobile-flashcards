@@ -48,6 +48,18 @@ export function saveDeckTitle ({title, deck}) {
     // }))
 }
 
-export function addCardToDecK ({ title, card }) {
-    return AsyncStorage.mergeItem()
+export function addCardToDeck ({ card, title }) {
+    AsyncStorage.getItem(DECK_STORAGE_KEY, (err, result) => {
+        if (result !== null) {
+            console.log(result)
+            const decks = JSON.parse(result)
+            const keys = Object.keys(decks)
+            const filteredKey = keys.filter((key) => key === title )
+            decks[filteredKey].questions.push(card)
+            console.log('DECKS', decks)
+            console.log('KEYS', keys)
+            console.log('THE KEY', decks)
+            return AsyncStorage.mergeItem(DECK_STORAGE_KEY,JSON.stringify(decks))
+        }
+    })
 }

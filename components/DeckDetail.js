@@ -9,7 +9,7 @@ class DeckDetail extends Component {
         return (
             <View style={styles.container}>
                 <Text style={{fontSize: 25}}>Deck Detail - {title}</Text>
-                <TouchableOpacity style={[styles.btn, {backgroundColor: blue}]} onPress={() => navigation.navigate('AddCard')}>
+                <TouchableOpacity style={[styles.btn, {backgroundColor: blue}]} onPress={() => navigation.navigate('AddCard', {title})}>
                     <Text>Add Card</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.btn, {backgroundColor: white}]} onPress={() => navigation.navigate('Quiz')}>
