@@ -1,24 +1,55 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native'
+import { View, Text, StyleSheet, TextInput, KeyboardAvoidingView, AsyncStorage } from 'react-native'
 import { blue, gray } from '../utils/colors'
+import { getDecks, saveDeckTitle, DECK_STORAGE_KEY } from '../utils/api'
+import { addDeck } from '../actions'
 import SubmitBtn from './SubmitBtn'
+import { connect } from 'react-redux'
 
 class NewDeck extends Component {
     state = {
-        input: ''
+        title: '',
+        questions: []
+    }
+    submit = () => {
+        const title = this.state.title
+        const deck = this.state
+
+        this.props.dispatch(addDeck({
+            [title]: deck
+        }))
+
+        this.setState(() => ({
+            title: '' 
+        }))
+        
+        saveDeckTitle({title, deck})
+    }
+    clearData = async () => {
+        try {
+            AsyncStorage.removeItem(DECK_STORAGE_KEY)
+            console.log('clear data')
+        }
+
+        catch(error) {
+            console.log(error)
+        }
     }
     render () {
-        const { input } = this.state
+        const { title } = this.state
         return (
             <KeyboardAvoidingView behavior='padding' style={styles.container}>
                 <Text style={{fontSize: 25}}>What is the title of your new deck?</Text>
                 <TextInput
-                    value={input}
+                    value={title}
                     style={styles.input}
-                    onChangeText={(text) => this.setState({ input: text })}
+                    onChangeText={(text) => this.setState({ title: text })}
                 />
-                <SubmitBtn onPress={() => console.log('submit')}>
+                <SubmitBtn onPress={this.submit}>
                     Submit
+                </SubmitBtn>
+                <SubmitBtn onPress={this.clearData}>
+                    Clear all data
                 </SubmitBtn>
             </KeyboardAvoidingView>
         )
@@ -41,4 +72,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default NewDeck
+export default connect()(NewDeck)

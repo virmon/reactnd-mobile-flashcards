@@ -24,10 +24,3 @@ export function addCard (card) {
         card
     }
 }
-
-export function saveDeck (title) {
-    return saveDeckTitle(title)
-        .then((item) => {
-            addDeck(item)
-        })
-}

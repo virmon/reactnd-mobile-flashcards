@@ -7,11 +7,12 @@ class DeckItem extends Component {
         console.log('pressed')
     }
     render () {
-        const { navigation, key, title, cards } = this.props
+        const { navigation, title, questions } = this.props
+        // console.log('ITEM', this.props.id[0].title)
         return (
             <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('DeckDetail', {title: title})}>
                 <Text style={{fontSize: 25}}>{title}</Text>
-                <Text style={styles.number}>{cards} cards</Text>
+                <Text style={styles.number}>{questions ? questions.length : 0} cards</Text>
             </TouchableOpacity>
         )
     }

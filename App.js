@@ -14,6 +14,10 @@ import NewDeck from './components/NewDeck'
 import DeckDetail from './components/DeckDetail'
 import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import reducer from './reducers'
+import middleware from './middleware'
 
 function MainStatusBar ({ backgroundColor, ...props }) {
   return (
@@ -107,10 +111,12 @@ const MainNavigator = createAppContainer(StackNavigator)
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <MainStatusBar backgroundColor={blue} barStyle='light-content' />
-        <MainNavigator />
-      </View>
+      <Provider store={createStore(reducer, middleware)}>
+        <View style={styles.container}>
+          <MainStatusBar backgroundColor={blue} barStyle='light-content' />
+          <MainNavigator />
+        </View>
+      </Provider>
     );
   }
 }

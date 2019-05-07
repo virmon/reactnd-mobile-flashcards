@@ -1,29 +1,30 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList } from 'react-native'
 import DeckItem from './DeckItem'
+import { connect } from 'react-redux'
+import { getDecks, formatDecksResults } from '../utils/api'
+import { _getDecks } from '../utils/_DATA'
+import { receiveDecks } from '../actions';
 
-const data = [
-    {
-        key: 1,
-        title: 'Deck 1',
-        cards: 10
-    },
-    {
-        key: 2,
-        title: 'Deck 2',
-        cards: 20
+class DeckList extends React.PureComponent {
+    componentDidMount () {
+        const { dispatch } = this.props
+
+        getDecks()
+            .then((deck) => {
+                dispatch(receiveDecks(JSON.parse(deck)))
+            })
     }
-]
-
-class DeckList extends Component {
     renderItems = ({ item }) => {
-        return <DeckItem key={item.key} {...item} navigation={this.props.navigation}/>
+        return <DeckItem {...item} navigation={this.props.navigation}/>
     }
     render () {
+        const { decks } = this.props
+        console.log('PROPS', formatDecksResults(JSON.stringify(decks)))
         return (
             <View>
                 <FlatList
-                    data={data}
+                    data={formatDecksResults(JSON.stringify(decks))}
                     renderItem={this.renderItems}
                 />
             </View>
@@ -31,4 +32,10 @@ class DeckList extends Component {
     }
 }
 
-export default DeckList
+function mapStateToProps (decks) {
+    return {
+        decks
+    }
+}
+
+export default connect(mapStateToProps)(DeckList)
