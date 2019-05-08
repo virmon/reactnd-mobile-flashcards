@@ -4,20 +4,25 @@ import { green, red } from '../utils/colors'
 import { connect } from 'react-redux'
 
 class Quiz extends Component {
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: `Quiz`
+        }
+    }
     state = {
         currentQuestion: '',
         currentAnswer: '',
         questions: [],
+        correct: [],
         answered: 1,
         total: 0,
-        isCorrect: false,
         correctAnswers: 0
     }
     componentDidMount () {
         const { navigation, decks } = this.props
         const title = navigation.state.params.title
         const listOfQuestions = decks[title].questions
-    
+
         const firstQuestion = listOfQuestions.shift()
         listOfQuestions.push(firstQuestion)
 
@@ -28,15 +33,13 @@ class Quiz extends Component {
             currentAnswer: firstQuestion.answer 
         })
     }
-    toggleCard = () => {
-        const { isAnswer } = this.state
+    checkAnswer = (ans) => {
+        const { questions, answered, total, correctAnswers, correct, currentAnswer } = this.state
 
-        isAnswer
-            ? this.setState({ isAnswer: false })
-            : this.setState({ isAnswer: true })
-    }
-    checkAnswer = () => {
-        const { questions, answered, total } = this.state
+        if (ans) {
+            correct.push(currentAnswer)
+            this.setState({ correctAnswers: correctAnswers + 1 })
+        }
 
         if (answered !== total) {
             const nextQuestion = questions.shift()
@@ -50,12 +53,20 @@ class Quiz extends Component {
                 answered: answered + 1
             })
         } else {
-            alert('Show score')
+            const { navigation } = this.props
+
+            this.setState({ 
+                answered: 1, 
+                correctAnswers: 0,
+                correct: []
+            })
+            
+            navigation.navigate('Score', { score: correct.length, total })
         }
     }
     render () {
         const { navigation, decks } = this.props
-        const title = navigation.state.params.title
+        const { title } = navigation.state.params
         console.log('PROPS', decks[title].questions)
         console.log('state',this.state.currentAnswer)
         return (
@@ -65,10 +76,10 @@ class Quiz extends Component {
                 <TouchableOpacity onPress={() => navigation.navigate('Answer', {answer: this.state.currentAnswer, total: this.state.total, answered: this.state.answered, checkAnswer: this.checkAnswer})}>
                     <Text style={{color: red}}>Answer</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.checkAnswer} style={[styles.btn, {backgroundColor: green}]} >
+                <TouchableOpacity onPress={() => this.checkAnswer(true)} style={[styles.btn, {backgroundColor: green}]} >
                     <Text>Correct</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.checkAnswer} style={[styles.btn, {backgroundColor: red}]} >
+                <TouchableOpacity onPress={() => this.checkAnswer(false)} style={[styles.btn, {backgroundColor: red}]} >
                     <Text>Incorrect</Text>
                 </TouchableOpacity>
             </View>

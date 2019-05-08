@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList } from 'react-native'
+import { View, FlatList  } from 'react-native'
 import DeckItem from './DeckItem'
 import { connect } from 'react-redux'
 import { getDecks, formatDecksResults } from '../utils/api'
@@ -26,6 +26,7 @@ class DeckList extends Component {
                 <FlatList
                     data={formatDecksResults(JSON.stringify(decks))}
                     renderItem={this.renderItems}
+                    keyExtractor={(index) => index.toString()}
                 />
             </View>
         )
