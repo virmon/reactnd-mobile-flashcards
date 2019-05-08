@@ -6,7 +6,7 @@ import { getDecks, formatDecksResults } from '../utils/api'
 import { _getDecks } from '../utils/_DATA'
 import { receiveDecks } from '../actions';
 
-class DeckList extends React.PureComponent {
+class DeckList extends Component {
     componentDidMount () {
         const { dispatch } = this.props
 

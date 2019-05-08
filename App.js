@@ -14,6 +14,7 @@ import NewDeck from './components/NewDeck'
 import DeckDetail from './components/DeckDetail'
 import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
+import Answer from './components/Answer'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducer from './reducers'
@@ -97,6 +98,15 @@ const StackNavigator = createStackNavigator({
   },
   Quiz: {
     screen: Quiz,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: blue,
+      }
+    }
+  },
+  Answer: {
+    screen: Answer,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
