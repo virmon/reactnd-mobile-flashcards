@@ -7,6 +7,11 @@ import { addCard } from '../actions'
 import { connect } from 'react-redux'
 
 class AddCard extends Component {
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: `Add Card`
+        }
+    }
     state = {
         question: '',
         answer: ''
