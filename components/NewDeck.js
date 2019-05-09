@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TextInput, KeyboardAvoidingView, AsyncStorage } from 'react-native'
 import { blue, gray } from '../utils/colors'
 import { getDecks, saveDeckTitle, DECK_STORAGE_KEY } from '../utils/api'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 import { addDeck } from '../actions'
 import SubmitBtn from './SubmitBtn'
 import { connect } from 'react-redux'
@@ -22,8 +23,13 @@ class NewDeck extends Component {
         this.setState(() => ({
             title: '' 
         }))
+
+        this.toHome()
         
         saveDeckTitle({title, deck})
+
+        clearLocalNotification()
+            .then(setLocalNotification)
     }
     clearData = async () => {
         try {
@@ -34,6 +40,9 @@ class NewDeck extends Component {
         catch(error) {
             console.log(error)
         }
+    }
+    toHome = () => {
+        this.props.navigation.navigate('DeckList')
     }
     render () {
         const { title } = this.state
