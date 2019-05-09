@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import { blue, gray } from '../utils/colors'
+import { gray, white } from '../utils/colors'
 
 class Score extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -14,11 +14,11 @@ class Score extends Component {
         return (
             <View behavior='padding' style={styles.container}>
                 <Text style={styles.score}>{'You scored ' + (score/total*100).toFixed(0) + '%'}</Text>
-                <TouchableOpacity onPress={() => navigation.navigate('Quiz')} style={[styles.btn, {backgroundColor: blue}]} >
-                    <Text>Restart Quiz</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Quiz')} style={[styles.btn, {backgroundColor: gray}]} >
+                    <Text style={styles.btnText}>Restart Quiz</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('DeckList')} style={[styles.btn, {backgroundColor: gray}]} >
-                    <Text>Back to Deck</Text>
+                    <Text style={styles.btnText}>Back to Deck</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -33,10 +33,14 @@ const styles = StyleSheet.create({
     },
     btn: {
         width: 200,
-        height: 20,
-        padding: 30,
+        height: 60,
+        padding: 20,
         margin: 20,
-        borderRadius: 10
+    },
+    btnText: {
+        color: white,
+        fontSize: 18,
+        textAlign: 'center'
     },
     score: {
         fontSize: 40,

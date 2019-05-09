@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { blue, white } from '../utils/colors'
+import { gray, white } from '../utils/colors'
 
 const SubmitBtn = ({ children, style = {}, onPress }) => {
     return (
@@ -14,8 +14,9 @@ const styles = StyleSheet.create({
     submit: {
         width: 200,
         height: 50,
-        backgroundColor: blue,
+        backgroundColor: gray,
         padding: 10,
+        margin: 20,
         justifyContent: 'center',
         alignItems: 'center'
     }

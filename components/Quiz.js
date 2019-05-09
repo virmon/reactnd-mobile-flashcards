@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import { green, red } from '../utils/colors'
+import { green, red, white } from '../utils/colors'
 import { connect } from 'react-redux'
 
 class Quiz extends Component {
@@ -83,10 +83,10 @@ class Quiz extends Component {
                     <Text style={{color: red}}>Answer</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => this.checkAnswer(true)} style={[styles.btn, {backgroundColor: green}]} >
-                    <Text>Correct</Text>
+                    <Text style={styles.btnText}>Correct</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => this.checkAnswer(false)} style={[styles.btn, {backgroundColor: red}]} >
-                    <Text>Incorrect</Text>
+                    <Text style={styles.btnText}>Incorrect</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -101,10 +101,14 @@ const styles = StyleSheet.create({
     },
     btn: {
         width: 200,
-        height: 20,
-        padding: 30,
+        height: 60,
+        padding: 20,
         margin: 20,
-        borderRadius: 10
+    },
+    btnText: {
+        color: white,
+        fontSize: 18,
+        textAlign: 'center'
     },
     question: {
         fontSize: 40,

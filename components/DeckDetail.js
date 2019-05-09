@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import { white, blue, gray } from '../utils/colors'
+import { white, gray } from '../utils/colors'
 import { connect } from 'react-redux';
 
 class DeckDetail extends Component {
@@ -16,11 +16,11 @@ class DeckDetail extends Component {
             <View style={styles.container}>
                 <Text style={{fontSize: 40}}>{title}</Text>
                 <Text style={styles.number}>{decks[title].questions.length} cards</Text>
-                <TouchableOpacity style={[styles.btn, {backgroundColor: blue}]} onPress={() => navigation.navigate('AddCard', {title})}>
-                    <Text>Add Card</Text>
+                <TouchableOpacity style={[styles.btn, {backgroundColor: gray}]} onPress={() => navigation.navigate('AddCard', {title})}>
+                    <Text style={styles.btnText}>Add Card</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.btn, {backgroundColor: white}]} onPress={() => navigation.navigate('Quiz', {title})}>
-                    <Text>Start Quiz</Text>
+                <TouchableOpacity style={[styles.btn, {backgroundColor: gray}]} onPress={() => navigation.navigate('Quiz', {title})}>
+                    <Text style={styles.btnText}>Start Quiz</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -35,9 +35,14 @@ const styles = StyleSheet.create({
     },
     btn: {
         width: 200,
-        height: 20,
-        padding: 30,
+        height: 60,
+        padding: 20,
         margin: 20
+    },
+    btnText: {
+        color: white,
+        fontSize: 18,
+        textAlign: 'center'
     },
     number: {
         fontSize: 16,

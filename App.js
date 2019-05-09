@@ -6,7 +6,7 @@ import {
   createMaterialTopTabNavigator,
   createStackNavigator
 } from 'react-navigation'
-import { blue, white } from './utils/colors'
+import { black, white } from './utils/colors'
 import { Fontawesome, Ionicons } from '@expo/vector-icons'
 import { Constants } from 'expo'
 import DeckList from './components/DeckList'
@@ -51,10 +51,10 @@ const options = {
     header: null
   },
   tabBarOptions: {
-    activeTintColor: Platform.OS === 'ios' ? blue : white,
+    activeTintColor: Platform.OS === 'ios' ? black : white,
     style: {
       height: 56,
-      backgroundColor: Platform.OS === 'ios' ? white : blue,
+      backgroundColor: Platform.OS === 'ios' ? white : black,
       shadowColor: 'rgb(0, 0, 0, 0.24)',
       shadowOffsetL: {
         width: 0,
@@ -84,7 +84,7 @@ const StackNavigator = createStackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: blue,
+        backgroundColor: black,
         height: 40,
         paddingBottom: 10
       }
@@ -95,7 +95,7 @@ const StackNavigator = createStackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: blue,
+        backgroundColor: black,
         height: 40,
         paddingBottom: 10
       }
@@ -106,7 +106,7 @@ const StackNavigator = createStackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: blue,
+        backgroundColor: black,
         height: 40,
         paddingBottom: 10
       }
@@ -117,7 +117,7 @@ const StackNavigator = createStackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: blue,
+        backgroundColor: black,
         height: 40,
         paddingBottom: 10
       }
@@ -128,7 +128,7 @@ const StackNavigator = createStackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: blue,
+        backgroundColor: black,
         height: 40,
         paddingBottom: 10
       }
@@ -143,7 +143,7 @@ export default class App extends React.Component {
     return (
       <Provider store={createStore(reducer, middleware)}>
         <View style={styles.container}>
-          <MainStatusBar backgroundColor={blue} barStyle='light-content' />
+          <MainStatusBar backgroundColor={black} barStyle='light-content' />
           <MainNavigator />
         </View>
       </Provider>
