@@ -30,6 +30,8 @@ class AddCard extends Component {
             answer: '' 
         })
 
+        this.props.navigation.navigate('DeckDetail')
+
         addCardToDeck({ card, title })
 
     }
