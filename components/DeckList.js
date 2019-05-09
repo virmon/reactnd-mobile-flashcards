@@ -26,7 +26,7 @@ class DeckList extends Component {
                 <FlatList
                     data={formatDecksResults(JSON.stringify(decks))}
                     renderItem={this.renderItems}
-                    keyExtractor={(index) => index.toString()}
+                    keyExtractor={(item) => item.title.toString()}
                 />
             </View>
         )
