@@ -4,11 +4,19 @@ import { green, red } from '../utils/colors'
 import { connect } from 'react-redux'
 
 class Answer extends Component {
-    handleCheckAnswer = () => {
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: `Answer`
+        }
+    }
+    handleCheckAnswer = (status) => {
         const { navigation } = this.props
         const { params } = navigation.state
-        params.checkAnswer()
-        navigation.navigate('Quiz')
+        const { total, answered, score } = navigation.state.params
+        params.checkAnswer(status)
+        if (answered !== total) {
+            navigation.navigate('Quiz')
+        }
     }
     render () {
         const { navigation } = this.props
@@ -20,10 +28,10 @@ class Answer extends Component {
                 <TouchableOpacity onPress={() => navigation.navigate('Quiz')}>
                     <Text style={{color: red}}>Question</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.handleCheckAnswer} style={[styles.btn, {backgroundColor: green}]} >
+                <TouchableOpacity onPress={() => this.handleCheckAnswer(true)} style={[styles.btn, {backgroundColor: green}]} >
                     <Text>Correct</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.handleCheckAnswer} style={[styles.btn, {backgroundColor: red}]} >
+                <TouchableOpacity onPress={() => this.handleCheckAnswer(false)} style={[styles.btn, {backgroundColor: red}]} >
                     <Text>Incorrect</Text>
                 </TouchableOpacity>
             </View>
