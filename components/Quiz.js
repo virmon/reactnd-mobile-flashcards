@@ -23,15 +23,21 @@ class Quiz extends Component {
         const title = navigation.state.params.title
         const listOfQuestions = decks[title].questions
 
-        const firstQuestion = listOfQuestions.shift()
-        listOfQuestions.push(firstQuestion)
-
-        this.setState({ 
-            total: listOfQuestions.length,
-            questions: listOfQuestions,
-            currentQuestion: firstQuestion.question,
-            currentAnswer: firstQuestion.answer 
-        })
+        if (listOfQuestions.length !== 0) {
+            const firstQuestion = listOfQuestions.shift()
+            listOfQuestions.push(firstQuestion)
+    
+            this.setState({ 
+                total: listOfQuestions.length,
+                questions: listOfQuestions,
+                currentQuestion: firstQuestion.question,
+                currentAnswer: firstQuestion.answer 
+            })
+        } else {
+            alert('No cards')
+            navigation.navigate('DeckList')
+        }
+        
     }
     checkAnswer = (ans) => {
         const { questions, answered, total, correctAnswers, correct, currentAnswer } = this.state
@@ -60,7 +66,7 @@ class Quiz extends Component {
                 correctAnswers: 0,
                 correct: []
             })
-            
+
             navigation.navigate('Score', { score: correct.length, total })
         }
     }
