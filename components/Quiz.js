@@ -50,7 +50,6 @@ class Quiz extends Component {
         if (answered !== total) {
             const nextQuestion = questions.shift()
             questions.push(nextQuestion)
-            console.log('NEXT QUESTION',nextQuestion.question)
             
             this.setState({ 
                 questions,
@@ -73,8 +72,6 @@ class Quiz extends Component {
     render () {
         const { navigation, decks } = this.props
         const { title } = navigation.state.params
-        console.log('PROPS', decks[title].questions)
-        console.log('state',this.state.currentAnswer)
         return (
             <View style={{flex: 1}}>
                 <Text style={{alignSelf: 'flex-start', margin: 10, fontSize: 18}}>{`${this.state.answered}/${this.state.total}`}</Text>

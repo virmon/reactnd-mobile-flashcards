@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TextInput, KeyboardAvoidingView, AsyncStorage } from 'react-native'
-import { blue, gray } from '../utils/colors'
-import { getDecks, saveDeckTitle, DECK_STORAGE_KEY } from '../utils/api'
+import { Text, StyleSheet, TextInput, KeyboardAvoidingView, AsyncStorage } from 'react-native'
+import { gray } from '../utils/colors'
+import { saveDeckTitle, DECK_STORAGE_KEY } from '../utils/api'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 import { addDeck } from '../actions'
 import SubmitBtn from './SubmitBtn'
@@ -61,9 +61,6 @@ class NewDeck extends Component {
                 />
                 <SubmitBtn onPress={this.submit}>
                     Submit
-                </SubmitBtn>
-                <SubmitBtn onPress={this.clearData}>
-                    Clear all data
                 </SubmitBtn>
             </KeyboardAvoidingView>
         )

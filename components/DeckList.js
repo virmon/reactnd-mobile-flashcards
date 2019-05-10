@@ -21,7 +21,6 @@ class DeckList extends Component {
     }
     render () {
         const { decks } = this.props
-        console.log('PROPS', formatDecksResults(JSON.stringify(decks)))
         return (
             <View>
                 {formatDecksResults(JSON.stringify(decks)).length > 0
