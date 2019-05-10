@@ -76,18 +76,20 @@ class Quiz extends Component {
         console.log('PROPS', decks[title].questions)
         console.log('state',this.state.currentAnswer)
         return (
-            <View behavior='padding' style={styles.container}>
-                <Text style={{alignSelf: 'flex-start', justifyContent: 'flex-start'}}>{`${this.state.answered}/${this.state.total}`}</Text>
-                <Text style={styles.question}>{this.state.currentQuestion}</Text>
-                <TouchableOpacity onPress={() => navigation.navigate('Answer', {answer: this.state.currentAnswer, total: this.state.total, answered: this.state.answered, checkAnswer: this.checkAnswer})}>
-                    <Text style={{color: red}}>Answer</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.checkAnswer(true)} style={[styles.btn, {backgroundColor: green}]} >
-                    <Text style={styles.btnText}>Correct</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.checkAnswer(false)} style={[styles.btn, {backgroundColor: red}]} >
-                    <Text style={styles.btnText}>Incorrect</Text>
-                </TouchableOpacity>
+            <View style={{flex: 1}}>
+                <Text style={{alignSelf: 'flex-start', margin: 10, fontSize: 18}}>{`${this.state.answered}/${this.state.total}`}</Text>
+                <View style={styles.container}>
+                    <Text style={styles.question}>{this.state.currentQuestion}</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('Answer', {answer: this.state.currentAnswer, total: this.state.total, answered: this.state.answered, checkAnswer: this.checkAnswer})}>
+                        <Text style={{color: red, margin: 10}}>Show Answer</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.checkAnswer(true)} style={[styles.btn, {backgroundColor: green}]} >
+                        <Text style={styles.btnText}>Correct</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.checkAnswer(false)} style={[styles.btn, {backgroundColor: red}]} >
+                        <Text style={styles.btnText}>Incorrect</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         )
     }
@@ -111,8 +113,9 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     question: {
-        fontSize: 40,
-        padding: 10
+        fontSize: 30,
+        padding: 10,
+        textAlign: 'center'
     }
 })
 

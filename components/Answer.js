@@ -22,18 +22,20 @@ class Answer extends Component {
         const { navigation } = this.props
         const { answer, total, answered } = navigation.state.params
         return (
-            <View behavior='padding' style={styles.container}>
-                <Text style={{alignSelf: 'flex-start', justifyContent: 'flex-start'}}>{`${answered}/${total}`}</Text>
-                <Text style={styles.answer}>{answer}</Text>
-                <TouchableOpacity onPress={() => navigation.navigate('Quiz')}>
-                    <Text style={{color: red}}>Question</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.handleCheckAnswer(true)} style={[styles.btn, {backgroundColor: green}]} >
-                    <Text style={styles.btnText}>Correct</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.handleCheckAnswer(false)} style={[styles.btn, {backgroundColor: red}]} >
-                    <Text style={styles.btnText}>Incorrect</Text>
-                </TouchableOpacity>
+            <View style={{flex: 1}}>
+                <Text style={{alignSelf: 'flex-start', margin: 10, fontSize: 18}}>{`${answered}/${total}`}</Text>
+                <View style={styles.container}>
+                    <Text style={styles.answer}>{answer}</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('Quiz')}>
+                        <Text style={{color: red, margin: 10}}>Show Question</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.handleCheckAnswer(true)} style={[styles.btn, {backgroundColor: green}]} >
+                        <Text style={styles.btnText}>Correct</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.handleCheckAnswer(false)} style={[styles.btn, {backgroundColor: red}]} >
+                        <Text style={styles.btnText}>Incorrect</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         )
     }
@@ -57,8 +59,9 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     answer: {
-        fontSize: 40,
-        padding: 10
+        fontSize: 30,
+        padding: 10,
+        textAlign: 'center'
     }
 })
 
