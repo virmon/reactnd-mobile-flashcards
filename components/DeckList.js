@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { View, FlatList  } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
 import DeckItem from './DeckItem'
 import { connect } from 'react-redux'
 import { getDecks, formatDecksResults } from '../utils/api'
 import { _getDecks } from '../utils/_DATA'
 import { receiveDecks } from '../actions';
+import { gray } from '../utils/colors'
 
 class DeckList extends Component {
     componentDidMount () {
@@ -23,11 +24,14 @@ class DeckList extends Component {
         console.log('PROPS', formatDecksResults(JSON.stringify(decks)))
         return (
             <View>
-                <FlatList
-                    data={formatDecksResults(JSON.stringify(decks))}
-                    renderItem={this.renderItems}
-                    keyExtractor={(item) => item.title.toString()}
-                />
+                {formatDecksResults(JSON.stringify(decks)).length > 0
+                    ?   <FlatList
+                            data={formatDecksResults(JSON.stringify(decks))}
+                            renderItem={this.renderItems}
+                            keyExtractor={(item) => item.title.toString()}
+                        />
+                    : <Text style={{fontSize: 18, color: gray, margin: 20}}>No Deck Available</Text>
+                }
             </View>
         )
     }

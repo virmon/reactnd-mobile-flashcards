@@ -16,20 +16,24 @@ class NewDeck extends Component {
         const title = this.state.title
         const deck = this.state
 
-        this.props.dispatch(addDeck({
-            [title]: deck
-        }))
-
-        this.setState(() => ({
-            title: '' 
-        }))
-
-        this.toHome()
-        
-        saveDeckTitle({title, deck})
-
-        clearLocalNotification()
-            .then(setLocalNotification)
+        if (title !== '') {
+            this.props.dispatch(addDeck({
+                [title]: deck
+            }))
+    
+            this.setState(() => ({
+                title: '' 
+            }))
+    
+            this.toHome()
+            
+            saveDeckTitle({title, deck})
+    
+            clearLocalNotification()
+                .then(setLocalNotification)
+        } else {
+            alert('You need to enter a deck title')
+        }
     }
     clearData = async () => {
         try {
@@ -53,6 +57,7 @@ class NewDeck extends Component {
                     value={title}
                     style={styles.input}
                     onChangeText={(text) => this.setState({ title: text })}
+                    placeholder='Input deck title'
                 />
                 <SubmitBtn onPress={this.submit}>
                     Submit

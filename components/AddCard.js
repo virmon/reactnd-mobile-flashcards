@@ -20,20 +20,24 @@ class AddCard extends Component {
         const { title } = this.props.navigation.state.params
         const { dispatch } = this.props
         const card = this.state
-        this.setState({ title })
 
-        dispatch(addCard({ title, card}))
+        if (this.state.question !== '' & this.state.answer !== '') {
+            this.setState({ title })
 
-        this.setState({ 
-            title: '',
-            question: '', 
-            answer: '' 
-        })
+            dispatch(addCard({ title, card}))
 
-        this.props.navigation.navigate('DeckDetail')
+            this.setState({ 
+                title: '',
+                question: '', 
+                answer: '' 
+            })
 
-        addCardToDeck({ card, title })
+            this.props.navigation.navigate('DeckDetail')
 
+            addCardToDeck({ card, title })
+        } else {
+            alert('You need to fill in a question and an answer to add a card')
+        }
     }
     render () {
         const { question, answer } = this.state
