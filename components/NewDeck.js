@@ -25,7 +25,7 @@ class NewDeck extends Component {
                 title: '' 
             }))
     
-            this.toHome()
+            this.toCard(title)
             
             saveDeckTitle({title, deck})
     
@@ -45,8 +45,8 @@ class NewDeck extends Component {
             console.log(error)
         }
     }
-    toHome = () => {
-        this.props.navigation.navigate('DeckList')
+    toCard = (title) => {
+        this.props.navigation.navigate('DeckDetail', {title: title})
     }
     render () {
         const { title } = this.state

@@ -34,8 +34,7 @@ class Quiz extends Component {
                 currentAnswer: firstQuestion.answer 
             })
         } else {
-            alert('No cards')
-            navigation.navigate('DeckList')
+            return
         }
         
     }
@@ -74,19 +73,25 @@ class Quiz extends Component {
         const { title } = navigation.state.params
         return (
             <View style={{flex: 1}}>
-                <Text style={{alignSelf: 'flex-start', margin: 10, fontSize: 18}}>{`${this.state.answered}/${this.state.total}`}</Text>
-                <View style={styles.container}>
-                    <Text style={styles.question}>{this.state.currentQuestion}</Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('Answer', {answer: this.state.currentAnswer, total: this.state.total, answered: this.state.answered, checkAnswer: this.checkAnswer})}>
-                        <Text style={{color: red, margin: 10}}>Show Answer</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.checkAnswer(true)} style={[styles.btn, {backgroundColor: green}]} >
-                        <Text style={styles.btnText}>Correct</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.checkAnswer(false)} style={[styles.btn, {backgroundColor: red}]} >
-                        <Text style={styles.btnText}>Incorrect</Text>
-                    </TouchableOpacity>
-                </View>
+                {
+                    this.state.currentQuestion === ''
+                        ?   <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text style={styles.warning}>Sorry, you cannot take a quiz because there are no cards in the deck.</Text></View>
+                        :   <View style={{flex: 1}}>
+                                <Text style={{alignSelf: 'flex-start', margin: 10, fontSize: 18}}>{`${this.state.answered}/${this.state.total}`}</Text>
+                                <View style={styles.container}>
+                                    <Text style={styles.question}>{this.state.currentQuestion}</Text>
+                                    <TouchableOpacity onPress={() => navigation.navigate('Answer', {answer: this.state.currentAnswer, total: this.state.total, answered: this.state.answered, checkAnswer: this.checkAnswer})}>
+                                        <Text style={{color: red, margin: 10}}>Show Answer</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => this.checkAnswer(true)} style={[styles.btn, {backgroundColor: green}]} >
+                                        <Text style={styles.btnText}>Correct</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => this.checkAnswer(false)} style={[styles.btn, {backgroundColor: red}]} >
+                                        <Text style={styles.btnText}>Incorrect</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                }
             </View>
         )
     }
@@ -113,6 +118,11 @@ const styles = StyleSheet.create({
         fontSize: 30,
         padding: 10,
         textAlign: 'center'
+    },
+    warning: {
+        fontSize: 18,
+        textAlign: 'center',
+        margin: 40
     }
 })
 
