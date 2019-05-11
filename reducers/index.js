@@ -22,11 +22,11 @@ function deck (state = {}, action) {
             }
         case REMOVE_DECK :
             return Object.keys(state)
-            .filter(key => key !== action.title)
-            .reduce((result, current) => {
-              result[current] = state[current]
-              return result
-          }, {});
+                .filter(key => key !== action.title)
+                .reduce((result, current) => {
+                    result[current] = state[current]
+                    return result
+                },{});
         default : 
             return state
     }
