@@ -41,4 +41,4 @@ will be an option to restart the quiz and go back to the list of decks.
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app)
 
 ## Platforms tested
-This project was tested using Samsung Galaxy S9
+This project was tested using Samsung Galaxy S9 (Android)
