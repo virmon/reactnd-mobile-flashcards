@@ -1,21 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { TouchableOpacity, Text, StyleSheet } from 'react-native'
-import { blue, gray } from '../utils/colors'
+import { gray } from '../utils/colors'
 
-class DeckItem extends Component {
-    handlePress () {
-        console.log('pressed')
-    }
-    render () {
-        const { navigation, title, questions } = this.props
-        // console.log('ITEM', this.props.id[0].title)
-        return (
-            <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('DeckDetail', {title: title})}>
-                <Text style={{fontSize: 25}}>{title}</Text>
-                <Text style={styles.number}>{questions ? questions.length : 0} cards</Text>
-            </TouchableOpacity>
-        )
-    }
+const DeckItem = ({ navigation, title, questions }) => {
+    return (
+        <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('DeckDetail', {title: title})}>
+            <Text style={{fontSize: 25}}>{title}</Text>
+            <Text style={styles.number}>{questions ? questions.length : 0} cards</Text>
+        </TouchableOpacity>
+    )
 }
 
 const styles = StyleSheet.create({
