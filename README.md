@@ -12,7 +12,7 @@ will be an option to restart the quiz and go back to the list of decks.
 * Install all project dependencies with `yarn add`
 * Start the development server with `yarn start` or `expo start`
 * Open Expo app then scan the QR code that is shown
-* Wait until building is finished then the app will start
+* Wait until build is finished then the app will start
 
 ## Screenshots
 
@@ -38,7 +38,7 @@ will be an option to restart the quiz and go back to the list of decks.
 ![score screen](/screenshots/score.jpg "Score Screen")
 
 ## create-react-native-app
-This project was bootstrapped with Create React Native App
+This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app)
 
 ## Platforms tested
 This project was tested using Samsung Galaxy S9
