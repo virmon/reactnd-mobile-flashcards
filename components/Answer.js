@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { green, red, white } from '../utils/colors'
-import { connect } from 'react-redux'
 
 class Answer extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -12,7 +11,7 @@ class Answer extends Component {
     handleCheckAnswer = (status) => {
         const { navigation } = this.props
         const { params } = navigation.state
-        const { total, answered, score } = navigation.state.params
+        const { total, answered } = navigation.state.params
         params.checkAnswer(status)
         if (answered !== total) {
             navigation.navigate('Quiz')
@@ -65,4 +64,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default connect()(Answer)
+export default Answer

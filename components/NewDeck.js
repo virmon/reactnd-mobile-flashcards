@@ -35,16 +35,6 @@ class NewDeck extends Component {
             alert('You need to enter a deck title')
         }
     }
-    clearData = async () => {
-        try {
-            AsyncStorage.removeItem(DECK_STORAGE_KEY)
-            console.log('clear data')
-        }
-
-        catch(error) {
-            console.log(error)
-        }
-    }
     toCard = (title) => {
         this.props.navigation.navigate('DeckDetail', {title: title})
     }

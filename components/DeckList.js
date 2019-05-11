@@ -3,7 +3,6 @@ import { View, Text, FlatList } from 'react-native'
 import DeckItem from './DeckItem'
 import { connect } from 'react-redux'
 import { getDecks, formatDecksResults } from '../utils/api'
-import { _getDecks } from '../utils/_DATA'
 import { receiveDecks } from '../actions';
 import { gray } from '../utils/colors'
 
