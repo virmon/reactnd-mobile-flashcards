@@ -10,8 +10,9 @@ will be an option to restart the quiz and go back to the list of decks.
 ## Getting Started
 * Download or git clone `https://github.com/virmon/reactnd-mobile-flashcards.git`
 * Install all project dependencies with `yarn add`
-* Start the development server with `yarn start`
+* Start the development server with `yarn start` or `expo start`
 * Open Expo app then scan the QR code that is shown
+* Wait until building is finished then the app will start
 
 ## Screenshots
 
